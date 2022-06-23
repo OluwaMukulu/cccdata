@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Menu,Partner,Item, Supplier,Client,Ingredients,Employee,Inventory,Event,Activity,Expenses,Peformance
 
+
+
+admin.site.site_header = 'Classic Cuisine Caterers'
+admin.site.site_title = 'Management Information System'
 # Register your models here.
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'phone', 'gender', 'address', 'department', 'employment_status', 'role')
