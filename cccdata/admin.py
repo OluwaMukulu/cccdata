@@ -4,7 +4,8 @@ from .models import Menu,Partner,Item, Supplier,Client,Ingredients,Employee,Inve
 
 
 admin.site.site_header = 'Classic Cuisine Caterers'
-admin.site.site_title = 'Management Information System'
+admin.site.site_title = 'GRiL Technology'
+admin.site.index_title = 'Management Information System'
 # Register your models here.
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'phone', 'gender', 'address', 'department', 'employment_status', 'role')
