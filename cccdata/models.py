@@ -186,6 +186,15 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+PROGRESS = [
+('HN', 'Has not started'),
+('ST', 'Started'),
+('TF', '25%'),
+('FT', '50%'),
+('SF', '75%'),
+('CP', 'Completed'),
+]
+
 class Activity(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
@@ -193,6 +202,7 @@ class Activity(models.Model):
     end_date = models.DateTimeField()
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True) 
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
+    status = models.CharField(max_length=2, choices=PROGRESS, null=True)
 
     class Meta:
         verbose_name_plural = 'Activities'
