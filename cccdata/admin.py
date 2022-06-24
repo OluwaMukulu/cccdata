@@ -26,7 +26,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address')
 
 class IngredientsAdmin(admin.ModelAdmin):
-    list_display = ('name','item', 'supplier', 'unit_price', 'profit_per_unit')
+    list_display = ('name','item', 'supplier', 'unit_price', 'profit_per_serving')
 
 class InventoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'type', 'supplier', 'unit_price', 'quantity', 'date_proccured')

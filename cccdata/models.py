@@ -77,7 +77,7 @@ class Ingredients(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
     unit = models.CharField(max_length=30)
     unit_price = models.IntegerField()
-    profit_per_unit = models.IntegerField()
+    profit_per_serving = models.IntegerField()
     quantity = models.IntegerField()
 
     class Meta:
