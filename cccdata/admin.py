@@ -35,7 +35,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'client', 'event_type','start_date', 'end_date', 'contract_sum', 'ordinary_guests','vip_guests', 'city')
 
 class ActivityAdmin(admin.ModelAdmin):
-    list_display = ('name', 'department', 'event','start_date', 'end_date')
+    list_display = ('name', 'department', 'event','start_date', 'end_date', 'status')
 
 class ExpenseAdmin(admin.ModelAdmin):
     list_display = ('name', 'expense_type', 'unit_price', 'quantity', 'order_status','payment_method','event','date')
