@@ -203,6 +203,7 @@ class Activity(models.Model):
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True) 
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
     status = models.CharField(max_length=2, choices=PROGRESS, null=True)
+    supervisor = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True) 
 
     class Meta:
         verbose_name_plural = 'Activities'
