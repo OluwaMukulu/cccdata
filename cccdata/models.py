@@ -44,7 +44,7 @@ class Item(models.Model):
         verbose_name_plural = 'Menu Items'
     
     def __str__(self):
-        return self.menu
+        return self.name
 
 class Supplier(models.Model):
     name = models.CharField(max_length=150)
