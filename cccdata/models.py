@@ -38,7 +38,7 @@ class Item(models.Model):
     name = models.CharField(max_length=200)
     allergins = models.CharField(max_length=200)
     unit_serving = models.IntegerField()
-    menu = models.ManyToManyField(Menu)
+    menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
     partner = models.ManyToManyField(Partner)
 
     class Meta:
@@ -78,7 +78,7 @@ class Ingredients(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
     unit = models.CharField(max_length=30)
     unit_price = models.IntegerField()
-    profit_per_serving = models.IntegerField()
+    profit_per_unit = models.IntegerField()
     quantity = models.IntegerField()
 
     class Meta:
