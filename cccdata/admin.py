@@ -17,7 +17,7 @@ class PartnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address')
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'menu', 'unit_serving')
+    list_display = ('name', 'unit_serving')
 
 class SupplierAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address')
