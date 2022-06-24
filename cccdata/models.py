@@ -38,8 +38,8 @@ class Item(models.Model):
     name = models.CharField(max_length=200)
     allergins = models.CharField(max_length=200)
     unit_serving = models.IntegerField()
-    menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
-    partner = models.ManyToManyField(Partner, null=True)
+    menu = models.ManyToManyField(Menu)
+    partner = models.ManyToManyField(Partner)
 
     class Meta:
         verbose_name_plural = 'Menu Items'
