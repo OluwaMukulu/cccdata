@@ -17,7 +17,7 @@ class PartnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address')
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'allergins', 'unit_serving')
+    list_display = ('name', 'menu', 'unit_serving')
 
 class SupplierAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address')
@@ -26,7 +26,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone', 'email', 'address')
 
 class IngredientsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'brand', 'supplier', 'unit_price', 'item', 'profit_per_serving')
+    list_display = ('name','item', 'supplier', 'unit_price', 'profit_per_unit')
 
 class InventoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'type', 'supplier', 'unit_price', 'quantity', 'date_proccured')
