@@ -259,7 +259,7 @@ class Expenses(models.Model):
         verbose_name_plural = 'Expenses'
     
     def __str__(self):
-        return self.date
+        return self.name
 
 
 PEFORMANCE_RANKING = [
