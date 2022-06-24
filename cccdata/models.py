@@ -221,6 +221,7 @@ EXPENSE_TYPE = [
 ('DM', 'Damages'),
 ('VM', 'Vehicle repair and Maintenance'),
 ('GS', 'Gas'),
+('LB', 'Labor'),
 ('UN', 'Uniform')
 ]
 
