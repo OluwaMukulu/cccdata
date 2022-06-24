@@ -12,9 +12,9 @@ TYPE = [
 
 class Menu(models.Model):
     name = models.CharField(max_length=300)
-    description = models.CharField(max_length=600)
+    description = models.CharField(max_length=600,null=True)
     type = models.CharField(max_length=2, choices=TYPE)
-    country_of_origin = models.CharField(max_length=200)
+    country_of_origin = models.CharField(max_length=200,null=True)
 
     class Meta:
         verbose_name_plural = 'Menu'
@@ -25,8 +25,8 @@ class Menu(models.Model):
 class Partner(models.Model):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=13)
-    email = models.EmailField()
-    address = models.CharField(max_length=200)
+    email = models.EmailField(null=True)
+    address = models.CharField(max_length=200,null=True)
 
     class Meta:
         verbose_name_plural = 'Partners'
@@ -36,7 +36,7 @@ class Partner(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=200)
-    allergins = models.CharField(max_length=200)
+    allergins = models.CharField(max_length=200,null=True)
     unit_serving = models.IntegerField()
     menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
 
@@ -49,8 +49,8 @@ class Item(models.Model):
 class Supplier(models.Model):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=13)
-    email = models.EmailField()
-    address = models.CharField(max_length=200)
+    email = models.EmailField(null=True)
+    address = models.CharField(max_length=200,null=True)
 
     class Meta:
         verbose_name_plural = 'Suppliers'
@@ -61,8 +61,8 @@ class Supplier(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=13)
-    email = models.EmailField()
-    address = models.CharField(max_length=200)  
+    email = models.EmailField(null=True)
+    address = models.CharField(max_length=200,null=True)  
 
     class Meta:
         verbose_name_plural = 'Clients'
@@ -72,10 +72,10 @@ class Client(models.Model):
 
 class Ingredients(models.Model):
     name = models.CharField(max_length=200)
-    brand = models.CharField(max_length=200) 
+    brand = models.CharField(max_length=200,null=True) 
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True) 
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
-    unit = models.CharField(max_length=30)
+    unit = models.CharField(max_length=30,null=True)
     unit_price = models.IntegerField()
     profit_per_serving = models.IntegerField()
     quantity = models.IntegerField()
@@ -110,7 +110,7 @@ DEPARTMENT = [
 ROLE = [
 ('MG', 'Manager'),
 ('JM', 'Junior Manager'),
-('OS', 'Ordinary staff'),
+('OS', 'Staff'),
 ('DR', 'Director'),
 ]
 
@@ -119,9 +119,9 @@ class Employee(models.Model):
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
     phone = models.CharField(max_length=13)
     national_registration_number = models.CharField(max_length=11)
-    email = models.EmailField()
-    address = models.CharField(max_length=200)
-    date_of_birth = models.DateField()
+    email = models.EmailField(null=True)
+    address = models.CharField(max_length=200,null=True)
+    date_of_birth = models.DateField(null=True)
     gender = models.CharField(max_length=6, choices=GENDER)
     employment_status = models.CharField(max_length=2, choices=EMPLOYMENT_STATUS)
     role = models.CharField(max_length=2, choices=ROLE, null=True)
@@ -147,7 +147,7 @@ class Inventory(models.Model):
     unit_price = models.IntegerField()
     quantity = models.IntegerField()
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True) 
-    date_proccured = models.DateField()
+    date_proccured = models.DateField(null=True)
 
     class Meta:
         verbose_name_plural = 'Inventory'
@@ -166,10 +166,10 @@ EVENT_TYPE = [
 
 class Event(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000,null=True)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True) 
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
     event_type = models.CharField(max_length=2, choices=EVENT_TYPE)
     contract_sum = models.IntegerField()
     budget = models.IntegerField()
@@ -197,9 +197,9 @@ PROGRESS = [
 
 class Activity(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    description = models.CharField(max_length=1000,null=True)
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True) 
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
     status = models.CharField(max_length=2, choices=PROGRESS, null=True)
@@ -241,12 +241,12 @@ PAYMENT_METHOD = [
 
 class Expenses(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000,null=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True)
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True)
     activity = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
-    date = models.DateField()
+    date = models.DateField(null=True)
     expense_type = models.CharField(max_length=2, choices=EXPENSE_TYPE)
     unit_price = models.IntegerField()
     quantity = models.IntegerField()
@@ -274,7 +274,7 @@ class Peformance(models.Model):
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True)
     salary = models.IntegerField()
     peformance = models.CharField(max_length=2, choices=PEFORMANCE_RANKING)
-    date = models.DateField()
+    date = models.DateField(null=True)
     
 
     class Meta:
