@@ -43,7 +43,6 @@ class InventoryAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'client', 'event_type','start_date', 'end_date', 'contract_sum', 'ordinary_guests','vip_guests', 'city')
     search_fields = ['name']
-    list_filter = ('country')
 
 class ActivityAdmin(admin.ModelAdmin):
     list_display = ('name', 'department', 'event','supervisor', 'status')
