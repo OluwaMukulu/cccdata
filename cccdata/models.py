@@ -13,9 +13,9 @@ TYPE = [
 
 class Menu(models.Model):
     name = models.CharField(max_length=300)
-    description = models.CharField(max_length=600,null=True)
+    description = models.CharField(max_length=600,null=True,blank=True)
     type = models.CharField(max_length=2, choices=TYPE)
-    country_of_origin = models.CharField(max_length=200,null=True)
+    country_of_origin = models.CharField(max_length=200,null=True,blank=True)
 
     class Meta:
         verbose_name_plural = 'Menu'
@@ -26,8 +26,8 @@ class Menu(models.Model):
 class Partner(models.Model):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=13)
-    email = models.EmailField(null=True)
-    address = models.CharField(max_length=200,null=True)
+    email = models.EmailField(null=True,blank=True)
+    address = models.CharField(max_length=200,null=True,blank=True)
 
     class Meta:
         verbose_name_plural = 'Partners'
@@ -37,7 +37,7 @@ class Partner(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=200)
-    allergins = models.CharField(max_length=200,null=True)
+    allergins = models.CharField(max_length=200,null=True,blank=True)
     unit_serving = models.IntegerField()
     menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
 
@@ -50,8 +50,8 @@ class Item(models.Model):
 class Supplier(models.Model):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=13)
-    email = models.EmailField(null=True)
-    address = models.CharField(max_length=200,null=True)
+    email = models.EmailField(null=True,blank=True)
+    address = models.CharField(max_length=200,null=True,blank=True)
 
     class Meta:
         verbose_name_plural = 'Suppliers'
@@ -62,8 +62,8 @@ class Supplier(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=150)
     phone = models.CharField(max_length=13)
-    email = models.EmailField(null=True)
-    address = models.CharField(max_length=200,null=True)  
+    email = models.EmailField(null=True,blank=True)
+    address = models.CharField(max_length=200,null=True,blank=True)  
 
     class Meta:
         verbose_name_plural = 'Clients'
@@ -73,13 +73,13 @@ class Client(models.Model):
 
 class Ingredients(models.Model):
     name = models.CharField(max_length=200)
-    brand = models.CharField(max_length=200,null=True) 
-    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True) 
+    brand = models.CharField(max_length=200,null=True,blank=True) 
+    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True,blank=True) 
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
     unit = models.CharField(max_length=30,null=True)
-    unit_price = models.IntegerField()
-    profit_per_serving = models.IntegerField()
-    quantity = models.IntegerField()
+    unit_price = models.IntegerField(null=True,blank=True)
+    profit_per_serving = models.IntegerField(null=True,blank=True)
+    quantity = models.IntegerField(null=True,blank=True)
 
     class Meta:
         verbose_name_plural = 'Ingredients'
@@ -120,10 +120,10 @@ class Employee(models.Model):
     full_name = models.CharField(max_length=50)
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
     phone = models.CharField(max_length=13)
-    national_registration_number = models.CharField(max_length=11)
-    email = models.EmailField(null=True)
-    address = models.CharField(max_length=200,null=True)
-    date_of_birth = models.DateField(null=True)
+    national_registration_number = models.CharField(max_length=11,null=True,blank=True)
+    email = models.EmailField(null=True,blank=True)
+    address = models.CharField(max_length=200,null=True,blank=True)
+    date_of_birth = models.DateField(null=True,blank=True)
     gender = models.CharField(max_length=6, choices=GENDER)
     employment_status = models.CharField(max_length=2, choices=EMPLOYMENT_STATUS)
     role = models.CharField(max_length=2, choices=ROLE, null=True)
@@ -148,8 +148,8 @@ class Inventory(models.Model):
     unit = models.CharField(max_length=30)
     unit_price = models.IntegerField()
     quantity = models.IntegerField()
-    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True) 
-    date_proccured = models.DateField(null=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True,blank=True) 
+    date_proccured = models.DateField(null=True,blank=True)
 
     class Meta:
         verbose_name_plural = 'Inventory'
@@ -168,7 +168,7 @@ EVENT_TYPE = [
 
 class Event(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000,null=True)
+    description = models.CharField(max_length=1000,null=True,blank=True)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True) 
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
@@ -199,10 +199,10 @@ PROGRESS = [
 
 class Activity(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000,null=True)
+    description = models.CharField(max_length=1000,null=True,blank=True)
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
-    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True) 
+    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True,blank=True) 
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
     status = models.CharField(max_length=2, choices=PROGRESS, null=True)
     supervisor = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True) 
@@ -218,6 +218,7 @@ EXPENSE_TYPE = [
 ('AC', 'Accomodation'),
 ('CA', 'Communication/Airtime'),
 ('KT', 'Kitchen'),
+('BD', 'Budget'),
 ('ME', 'Materials and Equipment'),
 ('FI', 'Food Items'),
 ('DM', 'Damages'),
@@ -228,10 +229,6 @@ EXPENSE_TYPE = [
 ('UN', 'Uniform')
 ]
 
-ORDER_STATUS = [
-('PC', 'Purchased'),
-('RT', 'Rented')
-]
 
 PAYMENT_METHOD = [
 ('CS', 'Cash'),
@@ -245,16 +242,15 @@ PAYMENT_METHOD = [
 
 class Expenses(models.Model):
     name = models.CharField(max_length=200)
-    description = models.CharField(max_length=1000,null=True)
-    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True)
+    description = models.CharField(max_length=1000,null=True,blank=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, null=True,blank=True)
     department = models.CharField(max_length=2, choices=DEPARTMENT, null=True)
-    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True)
+    event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True,blank=True)
     activity = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
     date = models.DateField(null=True)
     expense_type = models.CharField(max_length=2, choices=EXPENSE_TYPE)
     unit_price = models.DecimalField(max_digits=12,decimal_places=2)
     quantity = models.IntegerField()
-    order_status = models.CharField(max_length=2, choices=ORDER_STATUS)
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD)
     
 
