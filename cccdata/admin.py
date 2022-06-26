@@ -49,10 +49,14 @@ class ActivityAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_filter = ('status', 'supervisor')
 
+@admin.action(description='Set as Budget Expenses')
+def set_budget_expense(modeladmin, request, queryset):
+    queryset.update(status='BD')
 class ExpenseAdmin(admin.ModelAdmin):
     list_display = ('name', 'expense_type','activity','event','date', 'unit_price', 'quantity')
     search_fields = ['name']
     list_filter = ('date','expense_type')
+    actions = [set_budget_expense]
 
 class PeformanceAdmin(admin.ModelAdmin):
     list_display = ('employee', 'department', 'event', 'salary', 'peformance','date')
