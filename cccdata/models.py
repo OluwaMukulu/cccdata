@@ -101,6 +101,7 @@ GENDER = [
 
 DEPARTMENT = [
 ('Mn', 'Management'),
+('FD', 'Food/Kitchen'),
 ('TP', 'Transportion'),
 ('LG', 'Logistics/Operations'),
 ('MK', 'Marketing'),

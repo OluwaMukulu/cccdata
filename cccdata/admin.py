@@ -38,7 +38,7 @@ class IngredientsAdmin(admin.ModelAdmin):
 
 class InventoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'type', 'supplier', 'unit_price', 'quantity', 'date_proccured')
-    search_fields = ['name']
+    search_fields = ['name','type']
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'client', 'event_type','start_date', 'end_date', 'contract_sum', 'ordinary_guests','vip_guests', 'city')
@@ -51,9 +51,7 @@ class ActivityAdmin(admin.ModelAdmin):
 
 class ExpenseAdmin(admin.ModelAdmin):
     list_display = ('name', 'expense_type','activity','event','date', 'unit_price', 'quantity')
-    search_fields = ['name']
-    list_filter = ('expense_type')
-
+    search_fields = ['name','expense_type']
 
 class PeformanceAdmin(admin.ModelAdmin):
     list_display = ('employee', 'department', 'event', 'salary', 'peformance','date')
