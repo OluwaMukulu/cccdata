@@ -37,7 +37,7 @@ class ActivityAdmin(admin.ModelAdmin):
     list_display = ('name', 'department', 'event','supervisor', 'status')
 
 class ExpenseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'expense_type', 'unit_price', 'quantity','total','event','date')
+    list_display = ('name', 'expense_type', 'unit_price', 'quantity','activity','event','date')
 
 
 class PeformanceAdmin(admin.ModelAdmin):
