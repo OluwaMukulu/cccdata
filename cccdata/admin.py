@@ -1,12 +1,6 @@
 from django.contrib import admin
 from .models import Menu,Partner,Item, Supplier,Client,Ingredients,Employee,Inventory,Event,Activity,Expenses,Peformance
-import pandas as pd
-from sqlalchemy import create_engine
 
-REMOTE_DATABASE_URI = 'postgresql+psycopg2://nwgcbrsvsqctbs:afc63f94fcbf685664da3d935f64e9a88156098c949d23bec4562097dcaeb357@ec2-3-224-8-189.compute-1.amazonaws.com:5432/d1fhrpmbhi54cu'
-
-engine = create_engine(REMOTE_DATABASE_URI)
-df = pd.read_sql_table('cccdata_expenses', con=engine)
 
 admin.site.site_header = 'Classic Cuisine Caterers'
 admin.site.site_title = 'GRiL Technology'
@@ -45,9 +39,6 @@ class ActivityAdmin(admin.ModelAdmin):
 class ExpenseAdmin(admin.ModelAdmin):
     list_display = ('name', 'expense_type', 'unit_price', 'quantity','total','event','date')
 
-    def show_total():
-        total = df['unit_price']*df['quantity']
-        return total
 
 class PeformanceAdmin(admin.ModelAdmin):
     list_display = ('employee', 'department', 'event', 'salary', 'peformance','date')
