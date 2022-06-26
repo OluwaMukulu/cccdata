@@ -8,6 +8,8 @@ admin.site.index_title = 'Management Information System'
 # Register your models here.
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'phone', 'gender', 'address', 'department', 'employment_status', 'role')
+    search_fields = ['full_name', 'national_registration_number']
+    list_filter = ('employment_status', 'role')
 
 class MenuAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'type', 'country_of_origin')
