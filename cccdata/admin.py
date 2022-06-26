@@ -51,7 +51,8 @@ class ActivityAdmin(admin.ModelAdmin):
 
 class ExpenseAdmin(admin.ModelAdmin):
     list_display = ('name', 'expense_type','activity','event','date', 'unit_price', 'quantity')
-    search_fields = ['name','expense_type']
+    search_fields = ['name']
+    list_filter = ('date','expense_type')
 
 class PeformanceAdmin(admin.ModelAdmin):
     list_display = ('employee', 'department', 'event', 'salary', 'peformance','date')
