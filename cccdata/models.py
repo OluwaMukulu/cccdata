@@ -250,7 +250,7 @@ class Expenses(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.SET_NULL, null=True)
     date = models.DateField(null=True)
     expense_type = models.CharField(max_length=2, choices=EXPENSE_TYPE)
-    unit_price = models.DecimalField(decimal_places=2)
+    unit_price = models.DecimalField(max_digits=12,decimal_places=2)
     quantity = models.IntegerField()
     order_status = models.CharField(max_length=2, choices=ORDER_STATUS)
     payment_method = models.CharField(max_length=2, choices=PAYMENT_METHOD)
